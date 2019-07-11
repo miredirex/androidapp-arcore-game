@@ -17,10 +17,7 @@ import com.google.ar.sceneform.*
 import com.google.ar.sceneform.collision.Box
 import com.google.ar.sceneform.math.Quaternion
 import com.google.ar.sceneform.math.Vector3
-import com.google.ar.sceneform.rendering.Color
-import com.google.ar.sceneform.rendering.MaterialFactory
-import com.google.ar.sceneform.rendering.ModelRenderable
-import com.google.ar.sceneform.rendering.ShapeFactory
+import com.google.ar.sceneform.rendering.*
 import com.google.ar.sceneform.ux.ArFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -218,7 +215,7 @@ class SceneManagerAR {
         node.setParent(anchorNode)
         val assetManager = context.assets
         //physicsManager.createPhysicsCylinder(Vector3(0.05f, 0.3f, 0.05f), anchorNode.worldPosition, 0f, node)
-        physicsManager.createPhysicsBodyWithCollisionShape(anchorNode.worldPosition, 0f, node, assetManager)
+        physicsManager.createPhysicsBodyWithCollisionShape(anchorNode.worldPosition, 0f, node, "final_collision.bullet", assetManager)
 
         scene.addChild(anchorNode)
 
@@ -232,23 +229,37 @@ class SceneManagerAR {
     fun initiateBallAndThrow() {
         val cam = scene.camera
         // build ball's renderable
-        ModelRenderable.builder()
-            .setSource(context, Uri.parse("ball_gltf.sfb"))
-            .build()
+        MaterialFactory.makeOpaqueWithColor(context, Color(android.graphics.Color.rgb(227, 172, 82)))
             .thenAccept {
+                val spherka = ShapeFactory.makeSphere(0.02f, Vector3.zero(), it)
                 physicsManager.createSpherePhysicsNodeFromEye(
-                    it,
+                    spherka,
                     scene,
                     0.02f,
                     Vector3.subtract(cam.worldPosition, Vector3(0f, 0.05f, 0f)),
                     Vector3.add(cam.forward, cam.up.scaled(0.5f)),
                     0.8f,
-                    0.3f)
-            }
-            .exceptionally {
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
-                return@exceptionally null
-            }
+                    0.3f
+                )
+        }
+
+//        ModelRenderable.builder()
+//            .setSource(context, Uri.parse("ball_gltf.sfb"))
+//            .build()
+//            .thenAccept {
+//                physicsManager.createSpherePhysicsNodeFromEye(
+//                    it,
+//                    scene,
+//                    0.033f,
+//                    Vector3.subtract(cam.worldPosition, Vector3(0f, 0.05f, 0f)),
+//                    Vector3.add(cam.forward, cam.up.scaled(0.5f)),
+//                    0.8f,
+//                    0.3f)
+//            }
+//            .exceptionally {
+//                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+//                return@exceptionally null
+//            }
 
     }
 }

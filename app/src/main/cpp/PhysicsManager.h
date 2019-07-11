@@ -25,7 +25,7 @@ public:
     long createPhysicsCylinder(Vector3& size,Vector3& initialPosition,
                           float mass = 5,void* attachedNode = nullptr);
     long createPhysicsBodyWithCollisionShape(Vector3& initialPosition,
-                               float mass = 5,void* attachedNode = nullptr, char* assetBuffer = nullptr, long assetSize = 0);
+                               float mass = 5,void* attachedNode = nullptr, const char* bulletFileName = nullptr, AAssetManager* assetManager = nullptr);
     long createPhysicsSphere(float radius,Vector3& initialPosition,
                           float mass = 5,void* attachedNode = nullptr);
     long createPhysicsBoxFromEye(Vector3& size,Vector3& initialPosition,

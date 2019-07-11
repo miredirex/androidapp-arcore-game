@@ -78,7 +78,7 @@ long PhysicsManager::createPhysicsBox(Vector3 &size, Vector3 &initialPosition, f
 
     startTransform.setOrigin(btVector3(initialPosition.x, initialPosition.y
             , initialPosition.z));
-    btQuaternion quat(btVector3(0.4,.02,.1),67);
+    btQuaternion quat(quat.getIdentity());
     startTransform.setRotation(quat);
 
 
@@ -130,27 +130,29 @@ long PhysicsManager::createPhysicsCylinder(Vector3 &size, Vector3 &initialPositi
 }
 
 long PhysicsManager::createPhysicsBodyWithCollisionShape(Vector3 &initialPosition, float mass,
-                                           void *attachedNode, char *assetBuffer, long assetSize) {
+                                           void *attachedNode, const char *bulletFileName,  AAssetManager *assetMgr) {
+
+    // read .bullet collision shape file in app/src/main/assets folder
+    AAsset* colShapeAsset = AAssetManager_open(assetMgr, bulletFileName, AASSET_MODE_BUFFER);
+    size_t assetSize = AAsset_getLength(colShapeAsset);
+
+    // allocate memory to read file
+    char* assetBuffer = new char[assetSize+1];
+
+    AAsset_read(colShapeAsset, assetBuffer, assetSize);
+    AAsset_close(colShapeAsset);
 
     //create a dynamic rigidbody
-    btBulletWorldImporter importer(0); //= new btBulletWorldImporter(dynamicsWorld);
+    btBulletWorldImporter importer(0);
     LOGI("Initialized importer");
-    // for all who's dealing with this: the path is relative to the .cpp file. :) so the .bullet file should be stored with the .cpp in one folder
     importer.loadFileFromMemory(assetBuffer, assetSize);
     LOGI("Loaded file");
     int totalShapes = importer.getNumCollisionShapes();
     LOGI("total collision shapes: %i", totalShapes);
-    btCollisionShape *colShape;
-    if (totalShapes) {
-        colShape = importer.getCollisionShapeByIndex(0);
-        //colShape->setLocalScaling(btVector3(0.25f, 0.25f, 0.25f));
-        LOGE("--> .bullet IMPORTED");
-    } else {
-        LOGE("Unable to import collision shape from file. Set to CYLINDER");
-        colShape = new btCylinderShape(btVector3(0.1f,0.1f/2.f,0.1f));
-    }
+    btCollisionShape* colShape = importer.getCollisionShapeByIndex(0);
     LOGE("colShape declared");
 
+    //btCollisionShape* colShape = new btCylinderShape(btVector3(0.05f, 0.15f, 0.05f));
     collisionShapes.push_back(colShape);
     LOGE("Pushed back");
 
@@ -168,14 +170,14 @@ long PhysicsManager::createPhysicsBodyWithCollisionShape(Vector3 &initialPositio
     startTransform.setOrigin(btVector3(initialPosition.x, initialPosition.y,
                                        initialPosition.z));
 
-    btQuaternion quat(quat.getIdentity());
+    btQuaternion quat(btVector3(0, 1, 0), -1.57);
     startTransform.setRotation(quat);
 
     //using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
     btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
     btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, colShape, localInertia);
     btRigidBody* body = new btRigidBody(rbInfo);
-    body->setUserIndex(15);
+    body->setUserIndex(16);
     // body->setDamping(0.01,0.01);
 
     body->setUserPointer(attachedNode);
@@ -205,7 +207,7 @@ long PhysicsManager::createPhysicsSphere(float radius, Vector3 &initialPosition,
 
     startTransform.setOrigin(btVector3(initialPosition.x, initialPosition.y,
                                        initialPosition.z));
-    btQuaternion quat(btVector3(0.4,.02,.1),67);
+    btQuaternion quat(quat.getIdentity());
     startTransform.setRotation(quat);
 
     //using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
@@ -241,7 +243,7 @@ long PhysicsManager::createPhysicsSphereFromEye(float radius, Vector3 &initialPo
 
     startTransform.setOrigin(btVector3(initialPosition.x, initialPosition.y,
                                        initialPosition.z));
-    btQuaternion quat(btVector3(0.4,.02,.1),67);
+    btQuaternion quat(quat.getIdentity());
     startTransform.setRotation(quat);
 
     //using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
@@ -281,7 +283,7 @@ long PhysicsManager::createPhysicsBoxFromEye(Vector3 &size, Vector3 &initialPosi
 
     startTransform.setOrigin(btVector3(initialPosition.x, initialPosition.y,
                                        initialPosition.z));
-    btQuaternion quat(btVector3(0.4,.02,.1),67);
+    btQuaternion quat(quat.getIdentity());
     startTransform.setRotation(quat);
 
     //using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
@@ -321,7 +323,7 @@ long PhysicsManager::createPhysicsCylinderFromEye(Vector3 &size, Vector3 &initia
 
     startTransform.setOrigin(btVector3(initialPosition.x, initialPosition.y,
                                        initialPosition.z));
-    btQuaternion quat(btVector3(0.4,.02,.1),67);
+    btQuaternion quat(quat.getIdentity());
     startTransform.setRotation(quat);
 
     //using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects

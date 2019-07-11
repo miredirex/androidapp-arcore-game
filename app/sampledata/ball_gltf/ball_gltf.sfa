@@ -75,7 +75,7 @@
     file: 'sampledata/ball_gltf/ball_gltf.gltf',
     name: 'ball_gltf',
     recenter: 'root',
-    scale: 0.02,
+    scale: 0.025,
   },
   samplers: [
     {

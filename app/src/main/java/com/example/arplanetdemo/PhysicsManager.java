@@ -54,15 +54,18 @@ public class PhysicsManager {
                                         Node attachedNode);
 
     /**
-     *  Creates a custom physics shape
+     *  Creates a physics shape with custom collision shape
+     *  Exporting .bullet from blender: xissburg.com/post/export-bullet-from-blender/
+     *
      * @param initialPosition  initial world position
      * @param mass shape mass.if > 0, created shape will be dynamic otherwise will be static
      * @param attachedNode attached renderable node
-     * @param fileName collision shape .bullet file
+     * @param bulletFileName collision shape .bullet file in assets directory
+     * @param assetManager asset manager ( [your application context].getApplication().getAssets() )
      * @return unique id (native pointer) of the created physics body
      */
     public native long createPhysicsBodyWithCollisionShape(Vector3 initialPosition, float mass,
-                                              Node attachedNode, AssetManager fileName);
+                                              Node attachedNode, String bulletFileName, AssetManager assetManager);
 
     /**
      * Creates a sphere physics shape

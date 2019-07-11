@@ -119,6 +119,7 @@ Java_com_example_arplanetdemo_PhysicsManager_createPhysicsBodyWithCollisionShape
         jobject initialPosition ,
         jfloat mass,
         jobject attachedNode,
+        jstring bulletFileName,
         jobject assetManager) {
     if (physicsManager) {
         JniHelper jniHelper;
@@ -126,14 +127,10 @@ Java_com_example_arplanetdemo_PhysicsManager_createPhysicsBodyWithCollisionShape
         jobject  attachedNodeG = e_ctx.env->NewGlobalRef(attachedNode);
         AAssetManager *assetMgr = AAssetManager_fromJava(env, assetManager);
 
-        AAsset* colShapeAsset = AAssetManager_open(assetMgr, "cubic.bullet", AASSET_MODE_BUFFER);
-        long assetSize = AAsset_getLength(colShapeAsset);
-        char* assetBuffer = (char*) malloc (sizeof(char)*assetSize);
-        AAsset_read(colShapeAsset,assetBuffer,assetSize);
-        AAsset_close(colShapeAsset);
+        const char *bulletFileNameString = env->GetStringUTFChars(bulletFileName, nullptr);
+        env->ReleaseStringUTFChars(bulletFileName, bulletFileNameString);
 
-
-        return physicsManager->createPhysicsBodyWithCollisionShape(positionV,mass,(void*)attachedNodeG, assetBuffer, assetSize);
+        return physicsManager->createPhysicsBodyWithCollisionShape(positionV, mass, (void*)attachedNodeG, bulletFileNameString, assetMgr);
     }
     return INT64_MIN;
 }

@@ -75,7 +75,7 @@
     file: 'sampledata/urn_gltf/urn_gltf.gltf',
     name: 'urn_gltf',
     recenter: 'root',
-    scale: 0.08,
+    scale: 0.04,
   },
   samplers: [
     {
