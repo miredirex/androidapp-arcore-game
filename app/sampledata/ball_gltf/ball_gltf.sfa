@@ -1,0 +1,104 @@
+{
+  materials: [
+    {
+      name: 'Material.001',
+      parameters: [
+        {
+          baseColorFactor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColor: 'ballmat_Base_Color',
+        },
+        {
+          diffuseColorFactor: null,
+        },
+        {
+          diffuseColor: null,
+        },
+        {
+          normal: 'ballmat_Normal_OpenGL',
+        },
+        {
+          metallicFactor: 0,
+        },
+        {
+          roughnessFactor: 1,
+        },
+        {
+          specularFactor: null,
+        },
+        {
+          glossinessFactor: null,
+        },
+        {
+          specularGlossiness: null,
+        },
+        {
+          specularGlossinessCalculation: null,
+        },
+        {
+          metallicRoughness: 'ballmat_Roughness',
+        },
+        {
+          occlusion: null,
+        },
+        {
+          emissiveFactor: [
+            0,
+            0,
+            0,
+            1,
+          ],
+        },
+        {
+          emissive: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/gltf_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampledata/ball_gltf/ball_gltf.gltf',
+    name: 'ball_gltf',
+    recenter: 'root',
+    scale: 0.02,
+  },
+  samplers: [
+    {
+      file: 'sampledata/ball_gltf\\ballmat_Base_Color.png',
+      name: 'ballmat_Base_Color',
+      pipeline_name: 'ballmat_Base_Color.png',
+    },
+    {
+      file: 'sampledata/ball_gltf\\ballmat_Roughness.png',
+      name: 'ballmat_Roughness',
+      params: {
+        usage_type: 'Data',
+      },
+      pipeline_name: 'ballmat_Roughness.png',
+    },
+    {
+      file: 'sampledata/ball_gltf\\ballmat_Normal_OpenGL.png',
+      name: 'ballmat_Normal_OpenGL',
+      params: {
+        usage_type: 'Normal',
+      },
+      pipeline_name: 'ballmat_Normal_OpenGL.png',
+    },
+  ],
+  version: '0.54:2',
+}

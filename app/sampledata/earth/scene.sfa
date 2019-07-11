@@ -1,0 +1,178 @@
+{
+  materials: [
+    {
+      name: 'Material.001',
+      parameters: [
+        {
+          baseColorFactor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColor: 'Material.001_baseColor',
+        },
+        {
+          diffuseColorFactor: null,
+        },
+        {
+          diffuseColor: null,
+        },
+        {
+          normal: 'Material.001_normal',
+        },
+        {
+          metallicFactor: 0.59317799999999998,
+        },
+        {
+          roughnessFactor: 1,
+        },
+        {
+          specularFactor: null,
+        },
+        {
+          glossinessFactor: null,
+        },
+        {
+          specularGlossiness: null,
+        },
+        {
+          specularGlossinessCalculation: null,
+        },
+        {
+          metallicRoughness: 'Material.001_metallicRoughness',
+        },
+        {
+          occlusion: null,
+        },
+        {
+          emissiveFactor: [
+            0.02,
+            0.02,
+            0.02,
+            1,
+          ],
+        },
+        {
+          emissive: 'Material.001_emissive',
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/gltf_material.sfm',
+    },
+    {
+      name: 'Material.002',
+      parameters: [
+        {
+          baseColorFactor: [
+            1,
+            1,
+            1,
+            0.93999999999999995,
+          ],
+        },
+        {
+          baseColor: 'Material.002_baseColor',
+        },
+        {
+          diffuseColorFactor: null,
+        },
+        {
+          diffuseColor: null,
+        },
+        {
+          normal: null,
+        },
+        {
+          metallicFactor: 0,
+        },
+        {
+          roughnessFactor: 1,
+        },
+        {
+          specularFactor: null,
+        },
+        {
+          glossinessFactor: null,
+        },
+        {
+          specularGlossiness: null,
+        },
+        {
+          specularGlossinessCalculation: null,
+        },
+        {
+          metallicRoughness: null,
+        },
+        {
+          occlusion: null,
+        },
+        {
+          emissiveFactor: [
+            0,
+            0,
+            0,
+            1,
+          ],
+        },
+        {
+          emissive: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/gltf_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampledata/earth/scene.gltf',
+    name: 'scene',
+    recenter: 'root',
+    scale: 0.1,
+  },
+  samplers: [
+    {
+      file: 'sampledata/earth\\textures\\Material.001_baseColor.jpg',
+      name: 'Material.001_baseColor',
+      pipeline_name: 'textures/Material.001_baseColor.jpg',
+    },
+    {
+      file: 'sampledata/earth\\textures\\Material.001_emissive.jpg',
+      name: 'Material.001_emissive',
+      pipeline_name: 'textures/Material.001_emissive.jpg',
+    },
+    {
+      file: 'sampledata/earth\\textures\\Material.001_metallicRoughness.png',
+      name: 'Material.001_metallicRoughness',
+      params: {
+        usage_type: 'Data',
+      },
+      pipeline_name: 'textures/Material.001_metallicRoughness.png',
+    },
+    {
+      file: 'sampledata/earth\\textures\\Material.002_baseColor.jpg',
+      name: 'Material.002_baseColor',
+      pipeline_name: 'textures/Material.002_baseColor.jpg',
+    },
+    {
+      file: 'sampledata/earth\\textures\\Material.001_normal.jpg',
+      name: 'Material.001_normal',
+      params: {
+        usage_type: 'Normal',
+      },
+      pipeline_name: 'textures/Material.001_normal.jpg',
+    },
+  ],
+  version: '0.54:2',
+}

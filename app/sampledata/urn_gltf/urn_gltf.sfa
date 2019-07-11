@@ -1,0 +1,96 @@
+{
+  materials: [
+    {
+      name: 'Material.002',
+      parameters: [
+        {
+          baseColorFactor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColor: 'Material_002_Base_Color',
+        },
+        {
+          diffuseColorFactor: null,
+        },
+        {
+          diffuseColor: null,
+        },
+        {
+          normal: null,
+        },
+        {
+          metallicFactor: 1,
+        },
+        {
+          roughnessFactor: 1,
+        },
+        {
+          specularFactor: null,
+        },
+        {
+          glossinessFactor: null,
+        },
+        {
+          specularGlossiness: null,
+        },
+        {
+          specularGlossinessCalculation: null,
+        },
+        {
+          metallicRoughness: 'Material_002_Metallic-Material_002_Roughness',
+        },
+        {
+          occlusion: null,
+        },
+        {
+          emissiveFactor: [
+            0,
+            0,
+            0,
+            1,
+          ],
+        },
+        {
+          emissive: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/gltf_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampledata/urn_gltf/urn_gltf.gltf',
+    name: 'urn_gltf',
+    recenter: 'root',
+    scale: 0.08,
+  },
+  samplers: [
+    {
+      file: 'sampledata/urn_gltf\\Material_002_Metallic-Material_002_Roughness.png',
+      name: 'Material_002_Metallic-Material_002_Roughness',
+      params: {
+        usage_type: 'Data',
+      },
+      pipeline_name: 'Material_002_Metallic-Material_002_Roughness.png',
+    },
+    {
+      file: 'sampledata/urn_gltf\\Material_002_Base_Color.png',
+      name: 'Material_002_Base_Color',
+      pipeline_name: 'Material_002_Base_Color.png',
+    },
+  ],
+  version: '0.54:2',
+}
