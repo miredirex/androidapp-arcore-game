@@ -215,7 +215,7 @@ class SceneManagerAR {
         node.setParent(anchorNode)
         val assetManager = context.assets
         //physicsManager.createPhysicsCylinder(Vector3(0.05f, 0.3f, 0.05f), anchorNode.worldPosition, 0f, node)
-        physicsManager.createPhysicsBodyWithCollisionShape(anchorNode.worldPosition, 0f, node, "final_collision.bullet", assetManager)
+        physicsManager.createPhysicsBodyWithCollisionShape(anchorNode.worldPosition, 0f, node, "urn_collision.bullet", assetManager)
 
         scene.addChild(anchorNode)
 
